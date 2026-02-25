@@ -1,1 +1,209 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Services — ##ASPEN_MERIDIAN##</title>
+  <meta name="description" content="Services: lawful asset tracing, property intelligence, address verification, forensic digital analysis, and compliant due diligence." />
+  <meta name="theme-color" content="#1a070f" />
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
 
+<body>
+  <canvas id="bgCanvas" aria-hidden="true"></canvas>
+  <div class="scanlines" aria-hidden="true"></div>
+  <div class="vignette" aria-hidden="true"></div>
+
+  <div class="top-ribbon" data-top-tagline></div>
+
+  <header class="header">
+    <div class="navbar">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <div class="name" data-brand></div>
+          <div class="sub">Confidential • Ethical • Court-Defensible</div>
+        </div>
+      </div>
+
+      <nav class="nav" aria-label="Primary">
+        <a href="index.html">HOME</a>
+        <a href="services.html">SERVICES</a>
+        <a href="case-studies.html">CASE STUDIES</a>
+        <a href="about.html">ABOUT</a>
+        <a href="contact.html">CONTACT</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="panel">
+      <div class="panel-inner">
+        <div class="kicker">Services</div>
+        <div class="h1" style="font-size:40px;">WHAT WE DO</div>
+
+        <div class="subhead">
+          We specialise in lawful asset tracing, property intelligence, address verification, and forensic digital analysis,
+          supported by compliant due-diligence processes for complex cross-border and offshore matters.
+        </div>
+
+        <div class="list">
+          <div class="item">
+            <h3>Asset Tracing & Property Intelligence</h3>
+            <p>
+              Digital footprint intelligence, asset visibility analysis, property and address intelligence, and linkage mapping
+              across corporate structures using traceable, defensible methodology.
+            </p>
+            <div class="note">Sources: public records, corporate filings, open-source environments, and authorised client-provided material.</div>
+          </div>
+
+          <div class="item">
+            <h3>Corporate Due Diligence & Risk</h3>
+            <p>
+              Identification of hidden stakeholders, offshore connections, adverse media signals, director background indicators,
+              and compliance risk markers for sensitive transactions and private-client matters.
+            </p>
+          </div>
+
+          <div class="item">
+            <h3>Address & Identity Verification</h3>
+            <p>
+              Multi-source corroboration and consistency checks to support high-confidence verification workflows.
+            </p>
+          </div>
+
+          <div class="item">
+            <h3>Forensic Digital Analysis</h3>
+            <p>
+              Evidence-led analysis of authorised devices/accounts and permitted datasets, with structured reporting suitable for
+              legal, regulatory, and commercial contexts.
+            </p>
+          </div>
+
+          <div class="item">
+            <h3>Client-Authorised Digital Evidence Recovery</h3>
+            <p>
+              Forensic retrieval from authorised drives, SSDs, encrypted volumes (where keys/authority exist), permitted cloud platforms,
+              and mobile devices, producing court-defensible handling notes and chain-of-custody documentation.
+            </p>
+          </div>
+        </div>
+
+        <div class="cta-row">
+          <button class="btn primary" type="button" data-open-modal="contactModal">ENQUIRE NOW</button>
+          <a class="btn" href="legal-notices.html">LEGAL NOTICES</a>
+        </div>
+
+        <div class="hint">
+          Telephone: <a data-phone-link href="#"><span data-phone></span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="margin-top:18px;">
+      <div class="head">
+        <h2>Jurisdictional Coverage</h2>
+        <a class="btn" href="about.html">ABOUT THE TEAM</a>
+      </div>
+      <div class="body">
+        <div class="grid">
+          <div class="card">
+            <h3>United Kingdom</h3>
+            <p>Corporate filings, property signals, litigation markers, and risk mapping.</p>
+          </div>
+          <div class="card">
+            <h3>United States</h3>
+            <p>Targeted investigative insight with evidential discipline and lawful sourcing.</p>
+          </div>
+          <div class="card">
+            <h3>Europe</h3>
+            <p>Particular depth in higher-complexity jurisdictions (configurable), including Hungary and Sweden.</p>
+          </div>
+        </div>
+        <div class="hint" style="margin-top:12px;">
+          We operate only within lawful, authorised boundaries. We do not provide unlawful surveillance or unauthorised access.
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="row">
+        <div>
+          <strong data-brand></strong> • <span data-phone></span> • <span data-email></span>
+        </div>
+        <div>
+          <a href="legal-notices.html">Full Legal Notices</a> •
+          <a href="privacy.html">Privacy Policy</a>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- Reuse the same modals -->
+  <div class="modal-backdrop" id="contactModal" aria-hidden="true">
+    <div class="modal" role="dialog" aria-labelledby="contactTitle" aria-modal="true">
+      <div class="mhead">
+        <h3 id="contactTitle">Secure Enquiry — Call Back Request</h3>
+        <button class="iconbtn" type="button" data-close-modal="contactModal">CLOSE</button>
+      </div>
+      <div class="mbody">
+        <form class="form" id="popupContactForm" method="POST">
+          <div class="field"><label>Full Name</label><input name="name" type="text" required /></div>
+          <div class="field"><label>Email</label><input name="email" type="email" required /></div>
+          <div class="field"><label>Telephone</label><input name="phone" type="tel" /></div>
+          <div class="field"><label>Jurisdiction / Location</label><input name="location" type="text" /></div>
+          <div class="field" style="grid-column:1/-1;">
+            <label>What do you need help with?</label>
+            <select name="service_interest" required>
+              <option value="">Select…</option>
+              <option>Asset / Property Intelligence</option>
+              <option>Address / Identity Verification</option>
+              <option>Corporate Due Diligence</option>
+              <option>OSINT / Digital Footprint Mapping</option>
+              <option>Client-Authorised Evidence Recovery</option>
+              <option>Other (describe below)</option>
+            </select>
+          </div>
+          <div class="field"><label>Message</label><textarea name="message" required></textarea></div>
+          <div class="check">
+            <input id="authority_confirm" name="authority_confirm" type="checkbox" />
+            <label for="authority_confirm">
+              I confirm I am legally authorised to submit this information and acknowledge the Legal Notices & Privacy Policy.
+            </label>
+          </div>
+          <input type="hidden" name="page" value="services.html" />
+        </form>
+        <div class="hint">Set <strong>FORM_ENDPOINT</strong> in <strong>assets/config.js</strong>.</div>
+      </div>
+      <div class="mfooter">
+        <button class="btn" type="button" data-close-modal="contactModal">CANCEL</button>
+        <button class="btn primary" type="submit" form="popupContactForm">SUBMIT</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="legalModal" aria-hidden="true">
+    <div class="modal" role="dialog" aria-labelledby="legalTitle" aria-modal="true">
+      <div class="mhead">
+        <h3 id="legalTitle">Legal Notices and Disclaimers</h3>
+        <button class="iconbtn" type="button" data-close-modal="legalModal">DISMISS</button>
+      </div>
+      <div class="mbody">
+        <p style="line-height:1.5; color:rgba(255,255,255,.88);">
+          For the full Legal Notices, visit <a href="legal-notices.html" style="color:inherit;">Legal Notices</a>.
+        </p>
+      </div>
+      <div class="mfooter">
+        <a class="btn" href="legal-notices.html">OPEN FULL PAGE</a>
+        <button class="btn primary" id="legalAcceptBtn" type="button">CONTINUE</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="assets/config.js"></script>
+  <script src="assets/crt-bg.js"></script>
+  <script src="assets/main.js"></script>
+</body>
+</html>
