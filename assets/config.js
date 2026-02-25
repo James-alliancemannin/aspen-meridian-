@@ -1,5 +1,5 @@
-James, [25/02/2026 20:00]
-2) assets/config.js (all the “##” replacements live here)
+
+assets/config.js (all the “##” replacements live here)
 /* =========================
    Aspen Meridian — Site Config
    Replace values marked ##...##
