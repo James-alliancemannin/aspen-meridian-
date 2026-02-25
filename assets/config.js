@@ -33,7 +33,6 @@ window.ASPEN_CONFIG = {
   LEGAL_VERSION_LABEL: "Current as of February 2026"
 };
 
-James, [25/02/2026 20:00]
 /* =========================
    Aspen Meridian — Site Config
    Replace values marked ##...##
