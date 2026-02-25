@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Logo Position & Zoom Tester</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      background: #ffffff;
+      font-family: Arial, Helvetica, sans-serif;
+      overflow: hidden;
+      cursor: default;
+    }
+
+    #container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      touch-action: none; /* better mobile experience */
+    }
+
+    #logo {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      max-width: 40vw;           /* reasonable starting size */
+      max-height: 40vh;
+      width: auto;
+      height: auto;
+      cursor: grab;
+      user-select: none;
+      -webkit-user-drag: none;
+      transition: transform 0.12s ease-out;
+    }
+
+    #logo:active {
+      cursor: grabbing;
+    }
+
+    #instructions {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      background: rgba(0,0,0,0.65);
+      color: white;
+      padding: 12px 18px;
+      border-radius: 8px;
+      font-size: 15px;
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    #reset-hint {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: rgba(0,0,0,0.5);
+      color: #ddd;
+      padding: 8px 14px;
+      border-radius: 6px;
+      font-size: 13px;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="container">
+    <img id="logo" src="assets/images/Aspen_Meridian_Logo1.png" alt="Aspen Meridian Logo" draggable="false">
+  </div>
+
+  <div id="instructions">
+    Click & drag = move • Scroll wheel = zoom • Enter = reset
+  </div>
+
+  <div id="reset-hint">Press Enter to center & reset size</div>
+
+  <script>
+    const logo = document.getElementById('logo');
+    const container = document.getElementById('container');
+
+    let isDragging = false;
+    let startX, startY;
+    let currentX = 0;
+    let currentY = 0;
+    let scale = 1;
+    let minScale = 0.3;
+    let maxScale = 8;
+
+    // Reset function
+    function resetLogo() {
+      logo.style.left = '50%';
+      logo.style.top = '50%';
+      logo.style.transform = 'translate(-50%, -50%) scale(1)';
+      currentX = 0;
+      currentY = 0;
+      scale = 1;
+    }
+
+    // Mouse down → start drag
+    logo.addEventListener('mousedown', (e) => {
+      e.preventDefault();
+      isDragging = true;
+      startX = e.clientX - currentX;
+      startY = e.clientY - currentY;
+      logo.style.transition = 'none';
+    });
+
+    // Mouse move → drag
+    document.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      e.preventDefault();
+      currentX = e.clientX - startX;
+      currentY = e.clientY - startY;
+      logo.style.left = `calc(50% + ${currentX}px)`;
+      logo.style.top  = `calc(50% + ${currentY}px)`;
+    });
+
+    // Mouse up → stop drag
+    document.addEventListener('mouseup', () => {
+      isDragging = false;
+      logo.style.transition = 'transform 0.12s ease-out';
+    });
+
+    // Mouse leave window → stop drag
+    document.addEventListener('mouseleave', () => {
+      isDragging = false;
+    });
+
+    // Zoom with mouse wheel
+    logo.addEventListener('wheel', (e) => {
+      e.preventDefault();
+      
+      const delta = e.deltaY < 0 ? 0.15 : -0.15;
+      const oldScale = scale;
+      scale = Math.max(minScale, Math.min(maxScale, scale + delta));
+      
+      // Zoom toward mouse cursor
+      const rect = logo.getBoundingClientRect();
+      const mouseX = e.clientX - rect.left;
+      const mouseY = e.clientY - rect.top;
+      
+      const offsetX = (mouseX / oldScale) * (scale - oldScale);
+      const offsetY = (mouseY / oldScale) * (scale - oldScale);
+      
+      currentX -= offsetX;
+      currentY -= offsetY;
+      
+      logo.style.transform = `translate(-50%, -50%) scale(${scale})`;
+      logo.style.left = `calc(50% + ${currentX}px)`;
+      logo.style.top  = `calc(50% + ${currentY}px)`;
+    });
+
+    // Press Enter → reset
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        resetLogo();
+      }
+    });
+
+    // Optional: double-click also resets
+    logo.addEventListener('dblclick', resetLogo);
+
+    // Initial centering
+    window.addEventListener('load', () => {
+      resetLogo();
+    });
+  </script>
+
+</body>
+</html>
