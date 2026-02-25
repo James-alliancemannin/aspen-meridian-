@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Crown Logo Comparison – Aspen Meridian</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, sans-serif;
+      background: #0f0f0f;
+      color: #eee;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    h1 {
+      margin-bottom: 1.5rem;
+      font-size: 2.2rem;
+      text-align: center;
+    }
+
+    .container {
+      position: relative;
+      width: 100%;
+      max-width: 1000px;
+      aspect-ratio: 4 / 3;          /* adjust if your images are square / different ratio */
+      overflow: hidden;
+      border-radius: 16px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.7);
+      background: #111;
+    }
+
+    .container img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;          /* important: keeps logo centered without stretching */
+      pointer-events: none;
+    }
+
+    .after {
+      clip-path: inset(0 50% 0 0);  /* starts at 50% (middle) */
+    }
+
+    .slider {
+      position: absolute;
+      inset: 0 50% 0 auto;
+      width: 5px;
+      background: linear-gradient(to bottom, #00d4ff, #ffffff);
+      transform: translateX(50%);
+      cursor: ew-resize;
+      z-index: 10;
+      transition: background 0.2s;
+    }
+
+    .slider:hover {
+      background: #00eaff;
+    }
+
+    .handle {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 60px;
+      height: 60px;
+      background: white;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #000;
+      box-shadow: 0 0 25px rgba(0,0,0,0.6);
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .label {
+      position: absolute;
+      top: 1.5rem;
+      padding: 0.6rem 1.2rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      text-shadow: 0 1px 4px black;
+      z-index: 5;
+    }
+
+    .before-label { left: 1.5rem; background: rgba(0,0,0,0.65); }
+    .after-label  { right: 1.5rem; background: rgba(0, 212, 255, 0.75); }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 1.8rem; }
+      .container { aspect-ratio: 1 / 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Crown Logo – White vs Aspen Background</h1>
+
+  <div class="container">
+    <!-- Bottom layer = original crown on white/transparent -->
+    <img src="assets/images/crown-white.png" alt="Crown on white" class="before">
+
+    <!-- Top layer = crown with yellow aspen trees (gets clipped by slider) -->
+    <img src="assets/images/crown-aspen-yellow.png" alt="Crown with aspen trees" class="after">
+
+    <!-- Labels -->
+    <div class="label before-label">Original (white bg)</div>
+    <div class="label after-label">Aspen yellow leaves</div>
+
+    <!-- Draggable slider -->
+    <div class="slider">
+      <div class="handle">↔</div>
+    </div>
+  </div>
+
+  <p style="margin-top: 2rem; opacity: 0.8; text-align: center;">
+    Drag the handle left/right to compare
+  </p>
+
+  <script>
+    const container = document.querySelector('.container');
+    const slider    = document.querySelector('.slider');
+    const after     = document.querySelector('.after');
+
+    let isDragging = false;
+
+    function move(e) {
+      if (!isDragging) return;
+
+      const rect = container.getBoundingClientRect();
+      let x = (e.clientX || (e.touches && e.touches[0].clientX)) - rect.left;
+      x = Math.max(0, Math.min(x, rect.width));
+
+      const percent = (x / rect.width) * 100;
+
+      after.style.clipPath = `inset(0 ${100 - percent}% 0 0)`;
+      slider.style.left = `${percent}%`;
+    }
+
+    // Desktop
+    slider.addEventListener('mousedown',  () => isDragging = true);
+    document.addEventListener('mouseup',   () => isDragging = false);
+    document.addEventListener('mousemove', move);
+
+    // Mobile/touch
+    slider.addEventListener('touchstart', () => isDragging = true);
+    document.addEventListener('touchend',  () => isDragging = false);
+    document.addEventListener('touchmove', move);
+
+    // Optional: click anywhere jumps the slider
+    container.addEventListener('click', move);
+  </script>
+
+</body>
+</html>
