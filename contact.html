@@ -1,107 +1,47 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Contact — ##ASPEN_MERIDIAN##</title>
-  <meta name="theme-color" content="#1a070f" />
-  <link rel="stylesheet" href="assets/style.css" />
-</head>
-<body>
-  <canvas id="bgCanvas" aria-hidden="true"></canvas>
-  <div class="scanlines" aria-hidden="true"></div>
-  <div class="vignette" aria-hidden="true"></div>
+<section class="contact-section">
 
-  <div class="top-ribbon" data-top-tagline></div>
+    <h1>Get in Touch</h1>
 
-  <header class="header">
-    <div class="navbar">
-      <div class="brand">
-        <div class="logo" aria-hidden="true"></div>
-        <div>
-          <div class="name" data-brand></div>
-          <div class="sub">Confidential • Ethical • Court-Defensible</div>
-        </div>
-      </div>
-      <nav class="nav" aria-label="Primary">
-        <a href="index.html">HOME</a>
-        <a href="services.html">SERVICES</a>
-        <a href="case-studies.html">CASE STUDIES</a>
-        <a href="about.html">ABOUT</a>
-        <a href="contact.html">CONTACT</a>
-      </nav>
+    <p class="description">
+        Whether it is by phone, email, letter or live chat, we can answer any questions and get started on your investigation.
+        We don’t work a typical 9am–5pm so don’t feel you have to ‘wait til tomorrow’ as we could be online now!
+    </p>
+
+    <div class="contact-details">
+        <a href="tel:03300904031">0330 090 4031</a> |
+        <a href="mailto:enquiries@yourdomain.co.uk">enquiries@yourdomain.co.uk</a>
     </div>
-  </header>
 
-  <main class="container">
-    <section class="panel">
-      <div class="panel-inner">
-        <div class="kicker">Contact</div>
-        <div class="h1" style="font-size:40px;">SECURE ENQUIRY</div>
+    <div class="social-icons">
+        <a href="#">F</a>
+        <a href="#">X</a>
+        <a href="#">I</a>
+        <a href="#">in</a>
+    </div>
 
-        <div class="subhead">
-          Telephone: <a data-phone-link href="#"><span data-phone></span></a>
-          <br/>
-          Email: <span data-email></span>
-        </div>
+    <div class="form-container">
+        <form>
 
-        <div class="section" style="margin-top:12px;">
-          <div class="head"><h2>Enquiry Form</h2></div>
-          <div class="body">
-            <form class="form" id="popupContactForm" method="POST">
-              <div class="field"><label>Full Name</label><input name="name" type="text" required /></div>
-              <div class="field"><label>Email</label><input name="email" type="email" required /></div>
-              <div class="field"><label>Telephone</label><input name="phone" type="tel" /></div>
-              <div class="field"><label>Jurisdiction / Location</label><input name="location" type="text" /></div>
-              <div class="field" style="grid-column:1/-1;">
-                <label>Service</label>
-                <select name="service_interest" required>
-                  <option value="">Select…</option>
-                  <option>Asset / Property Intelligence</option>
-                  <option>Address / Identity Verification</option>
-                  <option>Corporate Due Diligence</option>
-                  <option>OSINT / Digital Footprint Mapping</option>
-                  <option>Client-Authorised Evidence Recovery</option>
-                  <option>Other (describe below)</option>
-                </select>
-              </div>
-              <div class="field"><label>Message</label><textarea name="message" required></textarea></div>
-
-              <div class="check">
-                <input id="authority_confirm" name="authority_confirm" type="checkbox" />
-                <label for="authority_confirm">
-                  I confirm I am legally authorised to submit this information and acknowledge the Legal Notices & Privacy Policy.
-                </label>
-              </div>
-
-              <input type="hidden" name="page" value="contact.html" />
-              <div class="cta-row" style="grid-column:1/-1;">
-                <button class="btn primary" type="submit">SUBMIT ENQUIRY</button>
-                <a class="btn" href="legal-notices.html">LEGAL NOTICES</a>
-              </div>
-            </form>
-
-            <div class="hint">
-              Configure delivery via <strong>FORM_ENDPOINT</strong> in <strong>assets/config.js</strong>.
+            <div class="form-row">
+                <input type="text" placeholder="Name">
+                <input type="text" placeholder="Contact Number">
             </div>
-          </div>
-        </div>
 
-      </div>
-    </section>
+            <div class="form-row">
+                <input type="email" placeholder="Email Address">
+            </div>
 
-    <footer class="footer">
-      <div class="row">
-        <div><strong data-brand></strong> • <span data-phone></span> • <span data-email></span></div>
-        <div><a href="legal-notices.html">Full Legal Notices</a> • <a href="privacy.html">Privacy Policy</a></div>
-      </div>
-    </footer>
-  </main>
+            <div class="form-row">
+                <textarea placeholder="Message"></textarea>
+            </div>
 
-  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+            <div class="captcha-row">
+                <span>8 + 6 =</span>
+                <input type="text">
+                <button type="submit">SUBMIT</button>
+            </div>
 
-  <script src="assets/config.js"></script>
-  <script src="assets/crt-bg.js"></script>
-  <script src="assets/main.js"></script>
-</body>
-</html>
+        </form>
+    </div>
+
+</section>
