@@ -1,199 +1,626 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Logo Position & Zoom Tester – with BG Color Cycle</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      height: 100vh;
-      background: #ffffff;
-      font-family: Arial, Helvetica, sans-serif;
-      overflow: hidden;
-      cursor: default;
-      transition: background 1.2s ease-in-out;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aspen Meridian | Elite Digital Forensics</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Playfair+Display:wght@700&amp;display=swap');
+        
+        :root {
+            --forest: #166534;
+        }
+        
+        .tail-container {
+            font-family: 'Inter', system_ui, sans-serif;
+        }
+        
+        .heading-font {
+            font-family: 'Playfair Display', sans-serif;
+        }
 
-    #container {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      touch-action: none;
-    }
+        .hero-bg {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.85)), url('https://picsum.photos/id/1015/2000/1200');
+            background-size: cover;
+            background-position: center;
+        }
 
-    #logo {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      max-width: 40vw;
-      max-height: 40vh;
-      width: auto;
-      height: auto;
-      cursor: grab;
-      user-select: none;
-      -webkit-user-drag: none;
-      transition: transform 0.12s ease-out;
-    }
+        .nav-link {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .nav-link:hover {
+            color: #4ade80;
+            transform: translateY(-2px);
+        }
 
-    #logo:active {
-      cursor: grabbing;
-    }
+        .service-card {
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-12px) scale(1.03);
+            box-shadow: 0 25px 50px -12px rgb(22 101 52 / 0.4);
+        }
 
-    #instructions {
-      position: fixed;
-      bottom: 20px;
-      left: 20px;
-      background: rgba(0,0,0,0.7);
-      color: white;
-      padding: 12px 18px;
-      border-radius: 8px;
-      font-size: 15px;
-      pointer-events: none;
-      z-index: 10;
-    }
+        .insight-card {
+            transition: all 0.3s ease;
+        }
+        
+        .insight-card:hover {
+            transform: scale(1.02);
+        }
 
-    #reset-hint {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      background: rgba(0,0,0,0.55);
-      color: #eee;
-      padding: 8px 14px;
-      border-radius: 6px;
-      font-size: 13px;
-      pointer-events: none;
-      z-index: 10;
-    }
-  </style>
+        .logo-text {
+            font-family: 'Playfair Display', sans-serif;
+            letter-spacing: -0.05em;
+        }
+
+        .cookie-banner {
+            animation: slideUp 0.5s ease forwards;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(100%); }
+            to { transform: translateY(0); }
+        }
+    </style>
 </head>
-<body>
+<body class="tail-container bg-zinc-950 text-white overflow-x-hidden">
+    <!-- NAVBAR -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-zinc-950/80 backdrop-blur-lg border-b border-zinc-800">
+        <div class="max-w-screen-2xl mx-auto">
+            <div class="flex items-center justify-between px-8 py-6">
+                <!-- Logo -->
+                <div class="flex items-center gap-x-3">
+                    <div class="w-9 h-9 bg-emerald-600 rounded flex items-center justify-center text-white text-2xl font-bold">🌲</div>
+                    <div>
+                        <span class="logo-text text-3xl font-semibold tracking-tighter text-white">Aspen</span>
+                        <span class="logo-text text-3xl font-semibold tracking-tighter text-emerald-500">Meridian</span>
+                    </div>
+                </div>
 
-  <div id="container">
-    <img id="logo" src="assets/images/Aspen_Meridian_Logo1.png" alt="Aspen Meridian Logo" draggable="false">
-  </div>
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center gap-x-10 text-sm font-medium">
+                    <a href="#services" onclick="smoothScrollTo('services')" class="nav-link text-zinc-300 hover:text-white">Services</a>
+                    <a href="#about" onclick="smoothScrollTo('about')" class="nav-link text-zinc-300 hover:text-white">The Difference</a>
+                    <a href="#insights" onclick="smoothScrollTo('insights')" class="nav-link text-zinc-300 hover:text-white">Insights</a>
+                    <a href="#contact" onclick="smoothScrollTo('contact')" class="nav-link text-zinc-300 hover:text-white">Contact</a>
+                </div>
 
-  <div id="instructions">
-    Click & drag = move • Scroll wheel = zoom • Enter = reset<br>
-    Keypad / numbers 1–0 = change background color
-  </div>
+                <div class="flex items-center gap-x-4">
+                    <a href="#contact" onclick="smoothScrollTo('contact')" 
+                       class="hidden sm:block px-6 py-3 text-sm font-semibold border border-emerald-500 hover:bg-emerald-500 hover:text-white transition-all rounded-full">
+                        Request Consultation
+                    </a>
+                    
+                    <!-- Mobile Hamburger -->
+                    <button id="mobile-menu-btn"
+                            class="md:hidden w-11 h-11 flex items-center justify-center text-2xl">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
 
-  <div id="reset-hint">Enter = reset • 1–0 = background cycle</div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-zinc-900 border-t border-zinc-800 py-6">
+            <div class="flex flex-col px-8 gap-y-6 text-lg">
+                <a href="#services" onclick="toggleMobileMenu();smoothScrollTo('services')" class="hover:text-emerald-400">Services</a>
+                <a href="#about" onclick="toggleMobileMenu();smoothScrollTo('about')" class="hover:text-emerald-400">The Difference</a>
+                <a href="#insights" onclick="toggleMobileMenu();smoothScrollTo('insights')" class="hover:text-emerald-400">Insights</a>
+                <a href="#contact" onclick="toggleMobileMenu();smoothScrollTo('contact')" class="hover:text-emerald-400">Contact</a>
+                <a href="#contact" onclick="toggleMobileMenu();smoothScrollTo('contact')" 
+                   class="mt-4 w-full text-center py-4 bg-emerald-600 hover:bg-emerald-700 rounded-2xl font-semibold">
+                    Request Consultation
+                </a>
+            </div>
+        </div>
+    </nav>
 
-  <script>
-    const logo = document.getElementById('logo');
-    const body = document.body;
+    <!-- HERO -->
+    <header id="hero" class="hero-bg h-screen flex items-center relative">
+        <div class="max-w-screen-2xl mx-auto px-8 pt-20">
+            <div class="max-w-3xl">
+                <div class="inline-flex items-center gap-x-2 bg-white/10 backdrop-blur-md px-5 py-2 rounded-3xl text-sm mb-6">
+                    <div class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
+                    <span class="uppercase tracking-[2px] font-medium">Digital Forensics • Evidence Integrity</span>
+                </div>
+                
+                <h1 class="heading-font text-7xl md:text-8xl leading-none font-semibold tracking-tighter mb-6">
+                    Truth in every<br>digital trace.
+                </h1>
+                
+                <p class="text-2xl text-zinc-300 max-w-lg mb-12">
+                    Elite digital forensics. Discreet investigations. Court-ready evidence.
+                </p>
+                
+                <div class="flex flex-wrap gap-4">
+                    <a href="#services" onclick="smoothScrollTo('services')"
+                       class="px-10 py-5 bg-emerald-600 hover:bg-emerald-700 text-lg font-semibold rounded-3xl transition-all flex items-center gap-x-3 group">
+                        Explore Services
+                        <span class="text-2xl group-active:rotate-45 transition-transform">→</span>
+                    </a>
+                    
+                    <a href="#contact" onclick="smoothScrollTo('contact')"
+                       class="px-10 py-5 border-2 border-white/70 hover:border-white text-lg font-medium rounded-3xl transition-all">
+                        Speak with an Expert
+                    </a>
+                </div>
+                
+                <div class="mt-16 flex items-center gap-x-8 text-sm">
+                    <div class="flex -space-x-4">
+                        <div class="w-9 h-9 bg-zinc-700 border-2 border-zinc-950 rounded-full flex items-center justify-center text-xs">🔬</div>
+                        <div class="w-9 h-9 bg-zinc-700 border-2 border-zinc-950 rounded-full flex items-center justify-center text-xs">📱</div>
+                        <div class="w-9 h-9 bg-zinc-700 border-2 border-zinc-950 rounded-full flex items-center justify-center text-xs">☁️</div>
+                    </div>
+                    <p class="text-zinc-400 leading-tight">
+                        Trusted by leading law firms,<br>corporations &amp; government agencies
+                    </p>
+                </div>
+            </div>
+        </div>
 
-    let isDragging = false;
-    let startX, startY;
-    let currentX = 0;
-    let currentY = 0;
-    let scale = 1;
-    let minScale = 0.3;
-    let maxScale = 8;
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-y-2">
+            <div class="text-xs uppercase tracking-widest text-zinc-500">Scroll to explore</div>
+            <div class="w-px h-12 bg-gradient-to-b from-transparent via-zinc-400 to-transparent"></div>
+        </div>
 
-    // Background colors for keys 1→0
-    const bgColors = [
-      "#ffffff", // 1 - white
-      "#e0f7fa", // 2 - light cyan
-      "#80deea", // 3 - cyan
-      "#2196f3", // 4 - blue
-      "#673ab7", // 5 - deep purple
-      "#e91e63", // 6 - magenta/pink
-      "#f44336", // 7 - red
-      "#ff9800", // 8 - orange
-      "#ffeb3b", // 9 - yellow
-      "#000000"  // 0 - black
-    ];
+        <!-- Logo accent in corner -->
+        <div class="absolute bottom-12 right-12 hidden lg:block">
+            <div class="flex items-center gap-x-2 opacity-40">
+                <span class="text-5xl">🌲</span>
+                <span class="logo-text text-4xl font-bold tracking-tighter">Aspen Meridian</span>
+            </div>
+        </div>
+    </header>
 
-    // Reset function
-    function resetLogo() {
-      logo.style.left = '50%';
-      logo.style.top = '50%';
-      logo.style.transform = 'translate(-50%, -50%) scale(1)';
-      currentX = 0;
-      currentY = 0;
-      scale = 1;
-    }
+    <!-- SERVICES -->
+    <section id="services" class="py-28 bg-zinc-950">
+        <div class="max-w-screen-2xl mx-auto px-8">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16">
+                <div>
+                    <span class="text-emerald-500 text-sm font-semibold tracking-widest">EXPERTISE</span>
+                    <h2 class="heading-font text-6xl tracking-tighter font-semibold mt-2">All the forensic services<br>you need.</h2>
+                </div>
+                <a href="#contact" onclick="smoothScrollTo('contact')" 
+                   class="mt-8 md:mt-0 group flex items-center gap-x-3 text-emerald-400 hover:text-emerald-300 font-medium">
+                    View all services 
+                    <span class="block w-8 h-px bg-current group-hover:w-12 transition-all"></span>
+                </a>
+            </div>
 
-    // Change background by key
-    document.addEventListener('keydown', (e) => {
-      const key = e.key;
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="service-card bg-zinc-900 border border-zinc-800 rounded-3xl p-10 group">
+                    <div class="text-6xl mb-8">📱</div>
+                    <h3 class="text-3xl font-semibold mb-4">Mobile &amp; Device Forensics</h3>
+                    <p class="text-zinc-400 leading-relaxed mb-8">Extraction and analysis of smartphones, tablets, wearables, and IoT devices — even when locked or damaged.</p>
+                    <a href="#" class="text-emerald-400 group-hover:text-emerald-300 flex items-center gap-x-2 text-sm font-medium">
+                        Learn more <span class="text-xl leading-none">→</span>
+                    </a>
+                </div>
 
-      // Reset on Enter
-      if (key === 'Enter') {
-        e.preventDefault();
-        resetLogo();
-        return;
-      }
+                <!-- Card 2 -->
+                <div class="service-card bg-zinc-900 border border-zinc-800 rounded-3xl p-10 group">
+                    <div class="text-6xl mb-8">💻</div>
+                    <h3 class="text-3xl font-semibold mb-4">Computer &amp; Network Forensics</h3>
+                    <p class="text-zinc-400 leading-relaxed mb-8">Deep investigation of desktops, servers, and enterprise networks. Recover deleted files, trace malware, and map attack vectors.</p>
+                    <a href="#" class="text-emerald-400 group-hover:text-emerald-300 flex items-center gap-x-2 text-sm font-medium">
+                        Learn more <span class="text-xl leading-none">→</span>
+                    </a>
+                </div>
 
-      // Number keys 0-9 → background change
-      if (/^[0-9]$/.test(key)) {
-        const index = parseInt(key, 10);
-        // Map 1→0 to array indices (1=0, 2=1, ..., 0=9)
-        const colorIndex = (index === 0) ? 9 : index - 1;
-        body.style.background = bgColors[colorIndex];
-      }
-    });
+                <!-- Card 3 -->
+                <div class="service-card bg-zinc-900 border border-zinc-800 rounded-3xl p-10 group">
+                    <div class="text-6xl mb-8">☁️</div>
+                    <h3 class="text-3xl font-semibold mb-4">Cloud &amp; Data Recovery</h3>
+                    <p class="text-zinc-400 leading-relaxed mb-8">Forensic recovery from AWS, Azure, Google Cloud, Dropbox, iCloud and more — preserving chain of custody.</p>
+                    <a href="#" class="text-emerald-400 group-hover:text-emerald-300 flex items-center gap-x-2 text-sm font-medium">
+                        Learn more <span class="text-xl leading-none">→</span>
+                    </a>
+                </div>
 
-    // Mouse drag
-    logo.addEventListener('mousedown', (e) => {
-      e.preventDefault();
-      isDragging = true;
-      startX = e.clientX - currentX;
-      startY = e.clientY - currentY;
-      logo.style.transition = 'none';
-    });
+                <!-- Card 4 -->
+                <div class="service-card bg-zinc-900 border border-zinc-800 rounded-3xl p-10 group">
+                    <div class="text-6xl mb-8">⚖️</div>
+                    <h3 class="text-3xl font-semibold mb-4">eDiscovery &amp; Litigation Support</h3>
+                    <p class="text-zinc-400 leading-relaxed mb-8">Defensible collection, processing, and review of electronically stored information for legal matters.</p>
+                    <a href="#" class="text-emerald-400 group-hover:text-emerald-300 flex items-center gap-x-2 text-sm font-medium">
+                        Learn more <span class="text-xl leading-none">→</span>
+                    </a>
+                </div>
 
-    document.addEventListener('mousemove', (e) => {
-      if (!isDragging) return;
-      e.preventDefault();
-      currentX = e.clientX - startX;
-      currentY = e.clientY - startY;
-      logo.style.left = `calc(50% + ${currentX}px)`;
-      logo.style.top  = `calc(50% + ${currentY}px)`;
-    });
+                <!-- Card 5 -->
+                <div class="service-card bg-zinc-900 border border-zinc-800 rounded-3xl p-10 group">
+                    <div class="text-6xl mb-8">🚨</div>
+                    <h3 class="text-3xl font-semibold mb-4">Incident Response &amp; Breach Investigation</h3>
+                    <p class="text-zinc-400 leading-relaxed mb-8">Rapid containment, root-cause analysis, and forensic reporting for cyber incidents.</p>
+                    <a href="#" class="text-emerald-400 group-hover:text-emerald-300 flex items-center gap-x-2 text-sm font-medium">
+                        Learn more <span class="text-xl leading-none">→</span>
+                    </a>
+                </div>
 
-    document.addEventListener('mouseup', () => {
-      isDragging = false;
-      logo.style.transition = 'transform 0.12s ease-out';
-    });
+                <!-- Card 6 -->
+                <div class="service-card bg-zinc-900 border border-zinc-800 rounded-3xl p-10 group">
+                    <div class="text-6xl mb-8">🧑‍⚖️</div>
+                    <h3 class="text-3xl font-semibold mb-4">Expert Witness Testimony</h3>
+                    <p class="text-zinc-400 leading-relaxed mb-8">Board-certified experts ready to testify in federal, state, and international courts.</p>
+                    <a href="#" class="text-emerald-400 group-hover:text-emerald-300 flex items-center gap-x-2 text-sm font-medium">
+                        Learn more <span class="text-xl leading-none">→</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    document.addEventListener('mouseleave', () => {
-      isDragging = false;
-    });
+    <!-- THE DIFFERENCE -->
+    <section id="about" class="py-28 bg-zinc-900">
+        <div class="max-w-screen-2xl mx-auto px-8">
+            <div class="grid lg:grid-cols-2 gap-20 items-center">
+                <div>
+                    <span class="uppercase text-emerald-500 tracking-widest text-sm font-semibold">Why Aspen Meridian</span>
+                    <h2 class="heading-font text-6xl tracking-tighter font-semibold mt-4 leading-none">Rooted in precision.<br>Grown in trust.</h2>
+                    <div class="mt-10 space-y-8 text-lg text-zinc-300">
+                        <div class="flex gap-x-6">
+                            <div class="text-emerald-500 text-3xl">01</div>
+                            <div>
+                                <div class="font-semibold text-white">Military-grade methodology</div>
+                                <p class="mt-2">Every investigation follows ISO 27037 and NIST standards — chain of custody is never compromised.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-x-6">
+                            <div class="text-emerald-500 text-3xl">02</div>
+                            <div>
+                                <div class="font-semibold text-white">Discretion by design</div>
+                                <p class="mt-2">We operate behind the scenes so your adversaries never know we were there.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-x-6">
+                            <div class="text-emerald-500 text-3xl">03</div>
+                            <div>
+                                <div class="font-semibold text-white">Courtroom-proven experts</div>
+                                <p class="mt-2">Our analysts have testified in over 400 matters across 18 jurisdictions.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#contact" onclick="smoothScrollTo('contact')" 
+                       class="mt-12 inline-flex items-center gap-x-4 text-emerald-400 hover:text-white group">
+                        <span class="text-xl font-medium">Meet the team</span>
+                        <div class="w-12 h-px bg-emerald-400 group-hover:bg-white transition-colors"></div>
+                    </a>
+                </div>
+                
+                <!-- Visual side -->
+                <div class="relative">
+                    <div class="aspect-square bg-zinc-800 rounded-[4rem] overflow-hidden border border-zinc-700">
+                        <img src="https://picsum.photos/id/1016/800/800" alt="Aspen Meridian Forensic Lab" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    <div class="absolute -bottom-6 -left-6 bg-zinc-900 border border-emerald-600 p-8 rounded-3xl max-w-xs">
+                        <div class="flex items-center gap-x-4">
+                            <div class="text-4xl">⭐️⭐️⭐️⭐️⭐️</div>
+                        </div>
+                        <p class="mt-4 italic text-zinc-300">"The most thorough and credible digital forensics team I've ever worked with."</p>
+                        <p class="mt-6 text-sm font-medium">— Partner, AmLaw 100 Firm</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    // Zoom with mouse wheel
-    logo.addEventListener('wheel', (e) => {
-      e.preventDefault();
-      
-      const delta = e.deltaY < 0 ? 0.15 : -0.15;
-      const oldScale = scale;
-      scale = Math.max(minScale, Math.min(maxScale, scale + delta));
-      
-      const rect = logo.getBoundingClientRect();
-      const mouseX = e.clientX - rect.left;
-      const mouseY = e.clientY - rect.top;
-      
-      const offsetX = (mouseX / oldScale) * (scale - oldScale);
-      const offsetY = (mouseY / oldScale) * (scale - oldScale);
-      
-      currentX -= offsetX;
-      currentY -= offsetY;
-      
-      logo.style.transform = `translate(-50%, -50%) scale(${scale})`;
-      logo.style.left = `calc(50% + ${currentX}px)`;
-      logo.style.top  = `calc(50% + ${currentY}px)`;
-    });
+    <!-- INSIGHTS -->
+    <section id="insights" class="py-28 bg-zinc-950">
+        <div class="max-w-screen-2xl mx-auto px-8">
+            <div class="flex justify-between items-end mb-16">
+                <div>
+                    <span class="text-emerald-500 uppercase tracking-widest text-sm font-semibold">Knowledge Center</span>
+                    <h2 class="heading-font text-6xl tracking-tighter font-semibold">Latest insights</h2>
+                </div>
+                <a href="#" class="hidden md:flex items-center gap-x-3 group text-sm font-medium">
+                    View all publications
+                    <span class="transition-transform group-hover:translate-x-2">→</span>
+                </a>
+            </div>
 
-    // Double-click also resets
-    logo.addEventListener('dblclick', resetLogo);
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Insight 1 -->
+                <div class="insight-card bg-zinc-900 rounded-3xl overflow-hidden border border-zinc-800 group">
+                    <div class="h-56 bg-zinc-800 relative">
+                        <img src="https://picsum.photos/id/201/600/400" alt="" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute top-4 right-4 bg-black/70 text-xs px-3 py-1 rounded-full">12 min read</div>
+                    </div>
+                    <div class="p-8">
+                        <div class="text-emerald-400 text-xs font-medium mb-3">AI • FORENSICS</div>
+                        <h3 class="font-semibold text-2xl leading-tight mb-4">How Generative AI is Changing Digital Evidence Recovery in 2026</h3>
+                        <p class="text-zinc-400 line-clamp-3">New techniques allow recovery of AI-generated content even after deliberate deletion.</p>
+                        <div class="mt-8 text-xs text-zinc-500 flex items-center justify-between">
+                            <span>February 2026</span>
+                            <span class="text-emerald-400">Read →</span>
+                        </div>
+                    </div>
+                </div>
 
-    // Start centered
-    window.addEventListener('load', resetLogo);
-  </script>
+                <!-- Insight 2 -->
+                <div class="insight-card bg-zinc-900 rounded-3xl overflow-hidden border border-zinc-800 group">
+                    <div class="h-56 bg-zinc-800 relative">
+                        <img src="https://picsum.photos/id/251/600/400" alt="" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute top-4 right-4 bg-black/70 text-xs px-3 py-1 rounded-full">8 min read</div>
+                    </div>
+                    <div class="p-8">
+                        <div class="text-emerald-400 text-xs font-medium mb-3">CYBERCRIME</div>
+                        <h3 class="font-semibold text-2xl leading-tight mb-4">The Rise of Encrypted Messaging Forensics: What Law Enforcement Needs to Know</h3>
+                        <p class="text-zinc-400 line-clamp-3">Signal, Telegram, and WhatsApp — we break down the latest extraction methods.</p>
+                        <div class="mt-8 text-xs text-zinc-500 flex items-center justify-between">
+                            <span>January 2026</span>
+                            <span class="text-emerald-400">Read →</span>
+                        </div>
+                    </div>
+                </div>
 
+                <!-- Insight 3 -->
+                <div class="insight-card bg-zinc-900 rounded-3xl overflow-hidden border border-zinc-800 group">
+                    <div class="h-56 bg-zinc-800 relative">
+                        <img src="https://picsum.photos/id/870/600/400" alt="" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute top-4 right-4 bg-black/70 text-xs px-3 py-1 rounded-full">15 min read</div>
+                    </div>
+                    <div class="p-8">
+                        <div class="text-emerald-400 text-xs font-medium mb-3">LITIGATION</div>
+                        <h3 class="font-semibold text-2xl leading-tight mb-4">Defensible Deletion: How to Prove Data Wasn't Spoliated</h3>
+                        <p class="text-zinc-400 line-clamp-3">Techniques that stand up to Daubert challenges in federal court.</p>
+                        <div class="mt-8 text-xs text-zinc-500 flex items-center justify-between">
+                            <span>December 2025</span>
+                            <span class="text-emerald-400">Read →</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <div class="bg-emerald-950 py-24">
+        <div class="max-w-screen-2xl mx-auto px-8 text-center">
+            <div class="max-w-2xl mx-auto">
+                <h2 class="heading-font text-6xl tracking-tighter font-semibold">Ready to uncover the truth?</h2>
+                <p class="mt-6 text-xl text-emerald-100">Our team responds within 4 hours for urgent matters.</p>
+                <a href="#contact" onclick="smoothScrollTo('contact')"
+                   class="mt-12 inline-block px-16 py-7 bg-white text-zinc-950 hover:bg-emerald-300 text-xl font-semibold rounded-3xl transition-all">
+                    Start a Confidential Case Review
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTACT -->
+    <section id="contact" class="py-28 bg-zinc-950">
+        <div class="max-w-screen-2xl mx-auto px-8">
+            <div class="grid lg:grid-cols-2 gap-20">
+                <div>
+                    <span class="text-emerald-500 text-sm font-semibold">GET IN TOUCH</span>
+                    <h2 class="heading-font text-6xl tracking-tighter font-semibold mt-4">Confidential consultations only.</h2>
+                    <p class="mt-8 text-zinc-400 text-lg leading-relaxed max-w-md">
+                        Every inquiry is handled under strict NDA. No obligation. No judgment.
+                    </p>
+                    
+                    <div class="mt-16 grid grid-cols-2 gap-x-12 gap-y-10">
+                        <div>
+                            <div class="uppercase text-xs tracking-widest text-zinc-500">Main Office</div>
+                            <div class="mt-3 font-medium">Aspen, Colorado • Denver, Colorado</div>
+                        </div>
+                        <div>
+                            <div class="uppercase text-xs tracking-widest text-zinc-500">Emergency Line</div>
+                            <a href="tel:18005551234" class="mt-3 block font-mono text-2xl hover:text-emerald-400 transition-colors">1-800-555-1234</a>
+                        </div>
+                        <div>
+                            <div class="uppercase text-xs tracking-widest text-zinc-500">Email</div>
+                            <a href="mailto:investigate@aspenmeridian.com" class="mt-3 block text-emerald-400 hover:underline">investigate@aspenmeridian.com</a>
+                        </div>
+                        <div>
+                            <div class="uppercase text-xs tracking-widest text-zinc-500">Secure Portal</div>
+                            <a href="#" class="mt-3 inline-flex items-center gap-x-2 text-emerald-400">
+                                Client Login <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <form class="bg-zinc-900 border border-zinc-800 rounded-3xl p-10 space-y-8">
+                    <div class="grid grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs uppercase tracking-widest text-zinc-500 mb-2">First Name</label>
+                            <input type="text" placeholder="Alex" 
+                                   class="w-full bg-transparent border border-zinc-700 focus:border-emerald-500 rounded-2xl px-6 py-5 outline-none transition-colors">
+                        </div>
+                        <div>
+                            <label class="block text-xs uppercase tracking-widest text-zinc-500 mb-2">Last Name</label>
+                            <input type="text" placeholder="Rivera" 
+                                   class="w-full bg-transparent border border-zinc-700 focus:border-emerald-500 rounded-2xl px-6 py-5 outline-none transition-colors">
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-xs uppercase tracking-widest text-zinc-500 mb-2">Organization / Firm</label>
+                        <input type="text" placeholder="Rivera &amp; Associates LLP" 
+                               class="w-full bg-transparent border border-zinc-700 focus:border-emerald-500 rounded-2xl px-6 py-5 outline-none transition-colors">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-xs uppercase tracking-widest text-zinc-500 mb-2">Message / Case Summary</label>
+                        <textarea rows="5" placeholder="Brief description of your matter (all communications are confidential)"
+                                  class="w-full bg-transparent border border-zinc-700 focus:border-emerald-500 rounded-3xl px-6 py-5 outline-none transition-colors resize-none"></textarea>
+                    </div>
+                    
+                    <button type="button" 
+                            class="w-full py-7 bg-emerald-600 hover:bg-emerald-700 text-lg font-semibold rounded-3xl transition-all">
+                        Submit Secure Inquiry
+                    </button>
+                    
+                    <p class="text-center text-xs text-zinc-500">Your data is encrypted end-to-end.</p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-black pt-20 pb-12 border-t border-zinc-900">
+        <div class="max-w-screen-2xl mx-auto px-8">
+            <div class="flex flex-col md:flex-row justify-between gap-y-16">
+                <div>
+                    <div class="flex items-center gap-x-3">
+                        <div class="w-8 h-8 bg-emerald-600 rounded flex items-center justify-center text-white text-3xl">🌲</div>
+                        <span class="logo-text text-4xl font-bold tracking-tighter">Aspen Meridian</span>
+                    </div>
+                    <p class="mt-6 text-sm max-w-xs text-zinc-400">
+                        Precision digital forensics. Discretion guaranteed. Results that stand in court.
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-3 gap-x-16">
+                    <div>
+                        <div class="font-medium mb-6">Company</div>
+                        <div class="space-y-3 text-sm">
+                            <a href="#" class="block text-zinc-400 hover:text-white">About Us</a>
+                            <a href="#" class="block text-zinc-400 hover:text-white">Careers</a>
+                            <a href="#" class="block text-zinc-400 hover:text-white">Press</a>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="font-medium mb-6">Resources</div>
+                        <div class="space-y-3 text-sm">
+                            <a href="#" class="block text-zinc-400 hover:text-white">Case Studies</a>
+                            <a href="#" class="block text-zinc-400 hover:text-white">Forensic Glossary</a>
+                            <a href="#" class="block text-zinc-400 hover:text-white">Certifications</a>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="font-medium mb-6">Legal</div>
+                        <div class="space-y-3 text-sm">
+                            <a href="#" class="block text-zinc-400 hover:text-white">Privacy Policy</a>
+                            <a href="#" class="block text-zinc-400 hover:text-white">Terms of Service</a>
+                            <a href="#" class="block text-zinc-400 hover:text-white">Code of Ethics</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-20 pt-8 border-t border-zinc-900 text-xs text-zinc-500 flex flex-col md:flex-row justify-between items-center gap-y-4">
+                <div>© 2026 Aspen Meridian LLC. All rights reserved.</div>
+                <div class="flex items-center gap-x-6">
+                    <a href="#" class="hover:text-white">LinkedIn</a>
+                    <a href="#" class="hover:text-white">X</a>
+                    <a href="#" class="hover:text-white">Secure File Drop</a>
+                </div>
+                <div>Made with precision in Colorado</div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- COOKIE BANNER -->
+    <div id="cookie-banner" 
+         class="cookie-banner fixed bottom-0 left-0 right-0 bg-zinc-900 border-t border-zinc-700 p-6 hidden z-[100]">
+        <div class="max-w-screen-2xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="flex-1 text-sm text-zinc-300">
+                This website uses cookies to ensure you get the best experience. 
+                <a href="#" class="underline hover:text-white">Learn more</a>.
+            </div>
+            <div class="flex items-center gap-4">
+                <button onclick="rejectCookies()" 
+                        class="px-8 py-3 text-sm border border-zinc-600 hover:border-zinc-400 rounded-2xl transition-colors">
+                    Reject
+                </button>
+                <button onclick="acceptCookies()" 
+                        class="px-8 py-3 text-sm bg-emerald-600 hover:bg-emerald-700 rounded-2xl transition-colors font-medium">
+                    Accept All
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Tailwind config
+        function initTailwind() {
+            // Already configured via CDN
+        }
+
+        // Smooth scroll
+        function smoothScrollTo(sectionId) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                const navHeight = 100;
+                const elementPosition = element.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.scrollY - navHeight;
+                
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        // Mobile menu
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('mobile-menu-btn');
+            
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+                icon.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+            } else {
+                menu.classList.add('hidden');
+                icon.innerHTML = '<i class="fa-solid fa-bars"></i>';
+            }
+        }
+
+        // Cookie handling
+        function showCookieBanner() {
+            const banner = document.getElementById('cookie-banner');
+            if (!localStorage.getItem('cookiesAccepted')) {
+                banner.classList.remove('hidden');
+            }
+        }
+
+        function acceptCookies() {
+            localStorage.setItem('cookiesAccepted', 'true');
+            document.getElementById('cookie-banner').classList.add('hidden');
+        }
+
+        function rejectCookies() {
+            localStorage.setItem('cookiesAccepted', 'false');
+            document.getElementById('cookie-banner').classList.add('hidden');
+        }
+
+        // Keyboard escape support
+        function handleEsc(e) {
+            if (e.key === "Escape") {
+                const banner = document.getElementById('cookie-banner');
+                if (!banner.classList.contains('hidden')) {
+                    rejectCookies();
+                }
+            }
+        }
+
+        // Initialize everything
+        window.onload = function() {
+            // Tailwind ready
+            initTailwind();
+            
+            // Show cookie banner after a short delay (first visit)
+            setTimeout(showCookieBanner, 1200);
+            
+            // Mobile hamburger
+            document.getElementById('mobile-menu-btn').addEventListener('click', toggleMobileMenu);
+            
+            // Keyboard support
+            document.addEventListener('keydown', handleEsc);
+            
+            // Demo: make hero text slightly more dramatic on load
+            console.log('%cAspen Meridian website ready. Premium feel achieved. 🌲', 'color:#4ade80; font-family:monospace');
+        };
+    </script>
 </body>
 </html>
