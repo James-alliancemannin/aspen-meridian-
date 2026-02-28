@@ -1,100 +1,118 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact | Aspen Meridian</title>
-  <link rel="stylesheet" href="assets/style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Contact — Aspen Meridian</title>
+  <meta name="description" content="Confidential engagement enquiries and secure contact." />
+  <meta name="theme-color" content="#f8f9fa" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- COPY THE ENTIRE <style> BLOCK FROM YOUR INDEX HERE -->
+  <!-- Literally copy everything inside <style> from index.html and paste here -->
 </head>
 
 <body>
 
-<header class="header">
-  <div class="container">
-    <a href="index.html" class="logo">ASPEN MERIDIAN</a>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="index.html#services">Services</a>
-      <a href="index.html#contact">Contact</a>
-    </nav>
+  <canvas id="bgCanvas" aria-hidden="true"></canvas>
+  <div class="scanlines" aria-hidden="true"></div>
+  <div class="vignette" aria-hidden="true"></div>
+
+  <div class="top-ribbon">
+    FORENSIC DIGITAL INVESTIGATIONS • PRIVATE INTELLIGENCE • EST. ##EST_YEAR##
   </div>
-</header>
 
-<main>
-
-<section>
-  <div class="container">
-
-    <div class="head">
-      <h2>Confidential Enquiry</h2>
-      <div class="small">
-        All matters handled discreetly and in full compliance with applicable law.
-      </div>
-    </div>
-
-    <div class="body">
-      <div class="grid">
-
-        <div class="card">
-          <h3>Direct Contact</h3>
-          <p>
-            <a href="tel:+447624488097">07624 48 80 97</a><br>
-            <a href="mailto:enquiries@aspenmeridian.co.uk">
-              enquiries@aspenmeridian.co.uk
-            </a>
-          </p>
-          <div class="small">
-            UK • EU • International
-          </div>
+  <header class="header">
+    <div class="navbar">
+      <div class="brand">
+        <div>
+          <div class="name">ASPEN MERIDIAN</div>
+          <div class="sub">Confidential • Ethical • Court-Defensible</div>
         </div>
+      </div>
+      <nav class="nav">
+        <a href="index.html">HOME</a>
+        <a href="services.html">SERVICES</a>
+        <a href="case-studies.html">CASE STUDIES</a>
+        <a href="about.html">ABOUT</a>
+        <a href="contact.html">CONTACT</a>
+      </nav>
+    </div>
+  </header>
 
-        <div class="card">
-          <h3>Submit an Enquiry</h3>
+  <main class="container">
 
-          <form class="contact-form">
+    <section class="section">
+      <div class="head">
+        <h2>Confidential Enquiry</h2>
+        <div class="small">
+          All matters handled discreetly and in full compliance with applicable law.
+        </div>
+      </div>
 
-            <div class="form-row">
-              <input type="text" placeholder="Full Name" required>
-              <input type="text" placeholder="Contact Number">
+      <div class="body">
+        <div class="grid">
+
+          <div class="card">
+            <h3>Direct Contact</h3>
+            <p>
+              <a href="tel:+447624488097" style="color:var(--accent-blue); text-decoration:none;">
+                07624 48 80 97
+              </a><br><br>
+              <a href="mailto:##CONTACT_EMAIL##" style="color:var(--accent-blue); text-decoration:none;">
+                ##CONTACT_EMAIL##
+              </a>
+            </p>
+            <div class="small">
+              UK • EU • International
             </div>
+          </div>
 
-            <div class="form-row">
-              <input type="email" placeholder="Email Address" required>
-            </div>
+          <div class="card">
+            <h3>Submit an Enquiry</h3>
 
-            <div class="form-row">
-              <textarea placeholder="Brief Description of Matter" rows="5" required></textarea>
-            </div>
+            <form>
+              <div style="display:grid; gap:1rem;">
+                <input type="text" placeholder="Full Name" required style="padding:0.8rem;border:1px solid var(--border);border-radius:6px;">
+                <input type="email" placeholder="Email Address" required style="padding:0.8rem;border:1px solid var(--border);border-radius:6px;">
+                <input type="text" placeholder="Contact Number" style="padding:0.8rem;border:1px solid var(--border);border-radius:6px;">
+                <textarea placeholder="Brief Description of Matter" rows="5" required style="padding:0.8rem;border:1px solid var(--border);border-radius:6px;"></textarea>
 
-            <div class="form-row">
-              <button class="btn primary" type="submit">
-                SUBMIT ENQUIRY
-              </button>
-            </div>
+                <button class="btn primary" type="submit">
+                  SUBMIT ENQUIRY
+                </button>
+              </div>
+            </form>
 
-            <div class="small" style="margin-top:1rem;">
+            <div class="small">
               By submitting this form, you consent to data processing in accordance with our privacy policy.
             </div>
-
-          </form>
+          </div>
 
         </div>
-
       </div>
-    </div>
+    </section>
 
-  </div>
-</section>
+    <footer class="footer">
+      <div class="row">
+        <div>
+          <strong>ASPEN MERIDIAN</strong> • 07624 48 80 97 • ##CONTACT_EMAIL##
+        </div>
+        <div>
+          <a href="legal-notices.html">Full Legal Notices</a> •
+          <a href="privacy.html">Privacy Policy</a>
+        </div>
+      </div>
+    </footer>
 
-</main>
+  </main>
 
-<footer class="footer">
-  <div class="container">
-    <div class="small">
-      © 2026 Aspen Meridian. All rights reserved.
-    </div>
-  </div>
-</footer>
+  <script src="assets/config.js"></script>
+  <script src="assets/crt-bg.js"></script>
+  <script src="assets/main.js"></script>
 
 </body>
 </html>
