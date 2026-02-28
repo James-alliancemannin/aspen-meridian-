@@ -1,63 +1,90 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Contact</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Link to your CSS file -->
-    <link rel="stylesheet" href="assets/style.css">
-</head>
-
 <body>
 
-<section class="contact-section">
+<header class="header">
+  <div class="container">
+    <a href="index.html" class="logo">ASPEN MERIDIAN</a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="index.html#services">Services</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+  </div>
+</header>
 
-    <h1>Get in Touch</h1>
+<main>
 
-    <p class="description">
-        Whether it is by phone, email, letter or live chat, we can answer any questions and get started on your investigation.
-        We don’t work a typical 9am–5pm so don’t feel you have to ‘wait til tomorrow’ as we could be online now!
-    </p>
+<section class="section">
+  <div class="container">
 
-    <div class="contact-details">
-        <a href="tel:03300904031">0330 090 4031</a> |
-        <a href="mailto:enquiries@yourdomain.co.uk">enquiries@yourdomain.co.uk</a>
+    <div class="head">
+      <h2>Confidential Enquiry</h2>
+      <div class="small">
+        All matters handled discreetly and in full compliance with applicable law.
+      </div>
     </div>
 
-    <div class="social-icons">
-        <a href="#">F</a>
-        <a href="#">X</a>
-        <a href="#">I</a>
-        <a href="#">in</a>
+    <div class="body">
+      <div class="grid">
+
+        <div class="card">
+          <h3>Direct Contact</h3>
+          <p>
+            <a href="tel:+447624488097">07624 48 80 97</a><br>
+            <a href="mailto:enquiries@aspenmeridian.co.uk">
+              enquiries@aspenmeridian.co.uk
+            </a>
+          </p>
+          <div class="small">
+            UK • EU • International
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Submit an Enquiry</h3>
+
+          <form class="contact-form">
+
+            <div class="form-row">
+              <input type="text" placeholder="Full Name" required>
+              <input type="text" placeholder="Contact Number">
+            </div>
+
+            <div class="form-row">
+              <input type="email" placeholder="Email Address" required>
+            </div>
+
+            <div class="form-row">
+              <textarea placeholder="Brief Description of Matter" rows="5" required></textarea>
+            </div>
+
+            <div class="form-row">
+              <button class="btn primary" type="submit">
+                SUBMIT ENQUIRY
+              </button>
+            </div>
+
+            <div class="small" style="margin-top:1rem;">
+              By submitting this form, you consent to data processing in accordance with our privacy policy.
+            </div>
+
+          </form>
+
+        </div>
+
+      </div>
     </div>
 
-    <div class="form-container">
-        <form>
-
-            <div class="form-row">
-                <input type="text" placeholder="Name">
-                <input type="text" placeholder="Contact Number">
-            </div>
-
-            <div class="form-row">
-                <input type="email" placeholder="Email Address">
-            </div>
-
-            <div class="form-row">
-                <textarea placeholder="Message"></textarea>
-            </div>
-
-            <div class="captcha-row">
-                <span>8 + 6 =</span>
-                <input type="text">
-                <button type="submit">SUBMIT</button>
-            </div>
-
-        </form>
-    </div>
-
+  </div>
 </section>
 
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="small">
+      © 2026 Aspen Meridian. All rights reserved.
+    </div>
+  </div>
+</footer>
+
 </body>
-</html>
